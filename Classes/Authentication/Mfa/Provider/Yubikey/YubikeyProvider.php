@@ -14,7 +14,7 @@ use Derhansen\SfYubikey\Service\YubikeyService;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use TYPO3\CMS\Core\Authentication\Mfa\MfaContentType;
+use TYPO3\CMS\Core\Authentication\Mfa\MfaViewType;
 use TYPO3\CMS\Core\Authentication\Mfa\MfaProviderInterface;
 use TYPO3\CMS\Core\Authentication\Mfa\MfaProviderPropertyManager;
 use TYPO3\CMS\Core\Context\Context;
@@ -115,14 +115,14 @@ class YubikeyProvider implements MfaProviderInterface
 
     /**
      * Initialize view and forward to the appropriate implementation
-     * based on the content type to be displayed.
+     * based on the view type to be returned.
      *
      * @param ServerRequestInterface $request
      * @param MfaProviderPropertyManager $propertyManager
      * @param string $type
      * @return ResponseInterface
      */
-    public function renderContent(
+    public function handleRequest(
         ServerRequestInterface $request,
         MfaProviderPropertyManager $propertyManager,
         string $type
@@ -131,13 +131,13 @@ class YubikeyProvider implements MfaProviderInterface
         $view->setTemplateRootPaths(['EXT:sf_yubikey/Resources/Private/Templates/']);
         $view->setPartialRootPaths(['EXT:sf_yubikey/Resources/Private/Partials/']);
         switch ($type) {
-            case MfaContentType::SETUP:
+            case MfaViewType::SETUP:
                 $this->prepareSetupView($view, $propertyManager);
                 break;
-            case MfaContentType::EDIT:
+            case MfaViewType::EDIT:
                 $this->prepareEditView($view, $propertyManager);
                 break;
-            case MfaContentType::AUTH:
+            case MfaViewType::AUTH:
                 $this->prepareAuthView($view, $propertyManager);
                 break;
         }
@@ -166,7 +166,7 @@ class YubikeyProvider implements MfaProviderInterface
         }
 
         $newYubikey = $this->getNewYubikey($request);
-        if ($this->isNewYubikeyRequest($request) && empty($newYubikey)) {
+        if (empty($newYubikey) && $this->isNewYubikeyRequest($request)) {
             // Either not YubiKey OTP given or OTP is wrong
             return false;
         }
@@ -318,7 +318,7 @@ class YubikeyProvider implements MfaProviderInterface
     protected function getNewYubikey(ServerRequestInterface $request): array
     {
         $yubikeyData = [];
-        $name = (string)$request->getParsedBody()['yubikey-name'] ?? '';
+        $name = (string)($request->getParsedBody()['yubikey-name'] ?? '');
         $yubikey = $this->getYubikeyOtp($request);
 
         $yubikeyId = $this->yubikeyService->getIdFromOtp($yubikey);
