@@ -93,6 +93,8 @@ class YubikeyProvider implements MfaProviderInterface
         $yubikeys = $propertyManager->getProperty('yubikeys');
         if (!$this->yubikeyService->isInYubikeys($yubikeys, $otp)) {
             // YubiKey not configured for user
+            $attempts = $propertyManager->getProperty('attempts', 0);
+            $propertyManager->updateProperties(['attempts' => ++$attempts]);
             return false;
         }
 
