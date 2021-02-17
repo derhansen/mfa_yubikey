@@ -1,6 +1,6 @@
 <?php
 
-namespace Derhansen\SfYubikey\Service;
+declare(strict_types=1);
 
 /*
  * This file is part of the Extension "sf_yubikey" for TYPO3 CMS.
@@ -8,6 +8,8 @@ namespace Derhansen\SfYubikey\Service;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+namespace Derhansen\SfYubikey\Service;
 
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -90,7 +92,7 @@ class YubikeyAuthService
     {
         $requestParams['id'] = $this->yubikeyClientId;
         $requestParams['otp'] = trim($otp);
-        $requestParams['nonce'] = md5(uniqid(rand()));
+        $requestParams['nonce'] = md5(uniqid((string)rand()));
         ksort($requestParams);
         $parameters = '';
         foreach ($requestParams as $p => $v) {

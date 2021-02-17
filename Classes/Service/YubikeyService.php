@@ -1,6 +1,6 @@
 <?php
 
-namespace Derhansen\SfYubikey\Service;
+declare(strict_types=1);
 
 /*
  * This file is part of the Extension "sf_yubikey" for TYPO3 CMS.
@@ -9,6 +9,11 @@ namespace Derhansen\SfYubikey\Service;
  * LICENSE.txt file that was distributed with this source code.
  */
 
+namespace Derhansen\SfYubikey\Service;
+
+/**
+ * Common service for YubiKey OTP handling
+ */
 class YubikeyService
 {
     public function isOtp(string $otp): bool

@@ -1,6 +1,6 @@
 <?php
 
-namespace Derhansen\SfYubikey\Authentication\Mfa\Provider\Yubikey;
+declare(strict_types=1);
 
 /*
  * This file is part of the Extension "sf_yubikey" for TYPO3 CMS.
@@ -9,14 +9,16 @@ namespace Derhansen\SfYubikey\Authentication\Mfa\Provider\Yubikey;
  * LICENSE.txt file that was distributed with this source code.
  */
 
+namespace Derhansen\SfYubikey\Authentication\Mfa\Provider\Yubikey;
+
 use Derhansen\SfYubikey\Service\YubikeyAuthService;
 use Derhansen\SfYubikey\Service\YubikeyService;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use TYPO3\CMS\Core\Authentication\Mfa\MfaViewType;
 use TYPO3\CMS\Core\Authentication\Mfa\MfaProviderInterface;
 use TYPO3\CMS\Core\Authentication\Mfa\MfaProviderPropertyManager;
+use TYPO3\CMS\Core\Authentication\Mfa\MfaViewType;
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Localization\LanguageService;
 use TYPO3\CMS\Core\Messaging\FlashMessage;

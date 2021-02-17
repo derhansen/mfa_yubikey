@@ -1,6 +1,6 @@
 <?php
 
-namespace Derhansen\SfYubikey\Command;
+declare(strict_types=1);
 
 /*
  * This file is part of the Extension "sf_yubikey" for TYPO3 CMS.
@@ -8,6 +8,8 @@ namespace Derhansen\SfYubikey\Command;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+namespace Derhansen\SfYubikey\Command;
 
 use Derhansen\SfYubikey\Service\YubikeyAuthService;
 use Symfony\Component\Console\Command\Command;
