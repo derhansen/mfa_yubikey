@@ -35,13 +35,16 @@ class YubikeyProvider implements MfaProviderInterface
     private ResponseFactoryInterface $responseFactory;
     private YubikeyAuthService $yubikeyAuthService;
     private YubikeyService $yubikeyService;
+    private Context $context;
 
     public function __construct(
         ResponseFactoryInterface $responseFactory,
+        Context $context,
         YubikeyAuthService $yubikeyAuthService,
         YubikeyService $yubikeyService
     ) {
         $this->responseFactory = $responseFactory;
+        $this->context = $context;
         $this->yubikeyAuthService = $yubikeyAuthService;
         $this->yubikeyService = $yubikeyService;
     }
@@ -110,7 +113,7 @@ class YubikeyProvider implements MfaProviderInterface
         $yubikeys = $this->yubikeyService->updateYubikeyUsage(
             $yubikeys,
             $otp,
-            GeneralUtility::makeInstance(Context::class)->getPropertyFromAspect('date', 'timestamp')
+            $this->context->getPropertyFromAspect('date', 'timestamp')
         );
         $propertyManager->updateProperties(['yubikeys' => $yubikeys]);
 
@@ -331,7 +334,7 @@ class YubikeyProvider implements MfaProviderInterface
             $yubikeyData = [
                 'name' => $name,
                 'yubikeyId' => $yubikeyId,
-                'dateAdded' => GeneralUtility::makeInstance(Context::class)->getPropertyFromAspect('date', 'timestamp'),
+                'dateAdded' => $this->context->getPropertyFromAspect('date', 'timestamp'),
                 'lastUsed' => ''
             ];
         }
