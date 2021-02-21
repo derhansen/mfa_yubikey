@@ -48,7 +48,7 @@ class CheckYubiKeyOtpCommand extends Command
         $yubikeyAuth = GeneralUtility::makeInstance(YubikeyAuthService::class);
         $otp = $input->getArgument('otp');
 
-        if ($yubikeyAuth->checkOtp($otp)) {
+        if ($yubikeyAuth->verifyOtp($otp)) {
             $io->success('OK: ' . $otp . ' has been successfully validated.');
             return 0;
         }
