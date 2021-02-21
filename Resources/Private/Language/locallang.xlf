@@ -9,11 +9,11 @@
 			<trans-unit id="yubikey.description">
 				<source>YubiKey OTP MFA authentication for the backend login.</source>
 			</trans-unit>
-			<trans-unit id="invalidConfiguration.title">
-				<source>Invalid configuration</source>
+			<trans-unit id="incompleteConfiguration.title">
+				<source>Incomplete configuration</source>
 			</trans-unit>
-			<trans-unit id="invalidConfiguration.message">
-				<source>The extension configuration is invalid. Make sure to configure "yubikeyClientId", "yubikeyClientKey" and "yubikeyApiUrls.</source>
+			<trans-unit id="incompleteConfiguration.message">
+				<source>The extension configuration is incomplete. Make sure to configure "yubikeyClientId", "yubikeyClientKey" and "yubikeyApiUrls.</source>
 			</trans-unit>
 			<trans-unit id="yubikeyAlreadyConfigured.title">
 				<source>YubiKey already configured</source>

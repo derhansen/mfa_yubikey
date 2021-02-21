@@ -358,8 +358,8 @@ class YubikeyProvider implements MfaProviderInterface
         $initialized = $this->yubikeyAuthService->isInitialized();
         if (!$initialized) {
             $this->addFlashMessage(
-                $this->getLanguageService()->sL(self::LLL . 'invalidConfiguration.message'),
-                $this->getLanguageService()->sL(self::LLL . 'invalidConfiguration.title'),
+                $this->getLanguageService()->sL(self::LLL . 'incompleteConfiguration.message'),
+                $this->getLanguageService()->sL(self::LLL . 'incompleteConfiguration.title'),
                 FlashMessage::ERROR
             );
         }
