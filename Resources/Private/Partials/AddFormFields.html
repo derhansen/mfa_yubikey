@@ -1,3 +1,8 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:core="http://typo3.org/ns/TYPO3/CMS/Core/ViewHelpers"
+    data-namespace-typo3-fluid="true">
+
 <h3><f:translate key="LLL:EXT:mfa_yubikey/Resources/Private/Language/locallang.xlf:yubikey.add"/></h3>
 
 <fieldset class="form-section col-lg-6 col-md-8 col-sm-12">
@@ -24,8 +29,10 @@
             <f:translate key="LLL:EXT:mfa_yubikey/Resources/Private/Language/locallang.xlf:yubikey.inputHelp"/>
             </span>
             <div class="form-control-wrap">
-                <input type="text" id="yubikey-otp" name="yubikey-otp" class="form-control" placeholder="{f:translate(key: 'LLL:EXT:mfa_yubikey/Resources/Private/Language/locallang.xlf:yubikey.inputPlaceholder')}" required="required">
+                <input type="text" id="yubikey-otp" name="yubikey-otp" class="form-control" placeholder="{f:translate(key: 'LLL:EXT:mfa_yubikey/Resources/Private/Language/locallang.xlf:yubikey.inputPlaceholder')}" {f:if(condition: required, then: 'required="required"')}>
             </div>
         </div>
     </div>
 </fieldset>
+
+</html>
