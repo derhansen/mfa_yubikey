@@ -4,20 +4,20 @@ services:
         autoconfigure: true
         public: false
 
-    Derhansen\SfYubikey\:
+    Derhansen\MfaYubikey\:
         resource: '../Classes/*'
 
-    Derhansen\SfYubikey\Command\CheckYubiKeyOtpCommand:
+    Derhansen\MfaYubikey\Command\CheckYubiKeyOtpCommand:
         tags:
             - name: 'console.command'
-              command: 'sf_yubikey:checkyubikeyotp'
+              command: 'mfa_yubikey:checkyubikeyotp'
               schedulable: true
 
-    Derhansen\SfYubikey\Authentication\Mfa\Provider\Yubikey\YubikeyProvider:
+    Derhansen\MfaYubikey\Authentication\Mfa\Provider\Yubikey\YubikeyProvider:
         tags:
             - name: mfa.provider
               identifier: 'yubikey'
-              title: 'LLL:EXT:sf_yubikey/Resources/Private/Language/locallang.xlf:yubikey.title'
-              description: 'LLL:EXT:sf_yubikey/Resources/Private/Language/locallang.xlf:yubikey.description'
-              setupInstructions: 'LLL:EXT:sf_yubikey/Resources/Private/Language/locallang.xlf:yubikey.setupInstructions'
+              title: 'LLL:EXT:mfa_yubikey/Resources/Private/Language/locallang.xlf:yubikey.title'
+              description: 'LLL:EXT:mfa_yubikey/Resources/Private/Language/locallang.xlf:yubikey.description'
+              setupInstructions: 'LLL:EXT:mfa_yubikey/Resources/Private/Language/locallang.xlf:yubikey.setupInstructions'
               icon: 'ext-sfyubikey-icon'

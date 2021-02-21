@@ -3,15 +3,15 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the Extension "sf_yubikey" for TYPO3 CMS.
+ * This file is part of the Extension "mfa_yubikey" for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Derhansen\SfYubikey\Command;
+namespace Derhansen\MfaYubikey\Command;
 
-use Derhansen\SfYubikey\Service\YubikeyAuthService;
+use Derhansen\MfaYubikey\Service\YubikeyAuthService;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;

@@ -1,10 +1,10 @@
 {
-  "name": "derhansen/sf_yubikey",
+  "name": "derhansen/mfa_yubikey",
   "type": "typo3-cms-extension",
-  "description": "Two-factor authentication with a YubiKey OTP",
-  "homepage": "https://github.com/derhansen/sf_yubikey",
+  "description": "YubiKey OTP MFA provider for TYPO3 11.2+",
+  "homepage": "https://github.com/derhansen/mfa_yubikey",
   "support": {
-    "issues": "https://github.com/derhansen/sf_yubikey/issues"
+    "issues": "https://github.com/derhansen/mfa_yubikey/issues"
   },
   "authors": [
     {
@@ -17,6 +17,7 @@
   "keywords": [
     "TYPO3 CMS",
     "yubikey",
+    "MFA provider",
     "two-factor authentication"
   ],
   "license": [
@@ -25,26 +26,26 @@
   "require": {
     "php": "^7.4",
     "ext-curl": "*",
-    "typo3/cms-core": "dev-master"
+    "typo3/cms-core": "^11.2 || dev-master"
   },
   "require-dev": {
-    "typo3/cms-backend": "dev-master",
-    "typo3/cms-frontend": "dev-master",
-    "typo3/cms-recordlist": "dev-master",
-    "typo3/cms-extbase": "dev-master",
-    "typo3/cms-fluid": "dev-master",
+    "typo3/cms-backend": "^11.2 || dev-master",
+    "typo3/cms-frontend": "^11.2 || dev-master",
+    "typo3/cms-recordlist": "^11.2 || dev-master",
+    "typo3/cms-extbase": "^11.2 || dev-master",
+    "typo3/cms-fluid": "^11.2 || dev-master",
     "typo3/testing-framework": "^6.6.2",
     "overtrue/phplint": "^1.1",
     "friendsofphp/php-cs-fixer": "^2.16.1"
   },
   "autoload": {
     "psr-4": {
-      "Derhansen\\SfYubikey\\": "Classes"
+      "Derhansen\\MfaYubikey\\": "Classes"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Derhansen\\SfYubikey\\": "Tests"
+      "Derhansen\\MfaYubikey\\": "Tests"
     }
   },
   "replace": {
@@ -57,7 +58,7 @@
   "scripts": {
     "post-autoload-dump": [
       "mkdir -p .Build/Web/typo3conf/ext/",
-      "[ -L .Build/Web/typo3conf/ext/sf_yubikey ] || ln -snvf ../../../../. .Build/Web/typo3conf/ext/sf_yubikey"
+      "[ -L .Build/Web/typo3conf/ext/mfa_yubikey ] || ln -snvf ../../../../. .Build/Web/typo3conf/ext/mfa_yubikey"
     ],
     "test:php:lint": [
       "phplint"
@@ -68,7 +69,7 @@
   },
   "extra": {
     "typo3/cms": {
-      "extension-key": "sf_yubikey",
+      "extension-key": "mfa_yubikey",
       "cms-package-dir": "{$vendor-dir}/typo3/cms",
       "web-dir": ".Build/Web"
     }

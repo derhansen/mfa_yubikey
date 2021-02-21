@@ -16,7 +16,7 @@
 >
 
     <testsuites>
-        <testsuite name="sf_yubikey Unit Tests">
+        <testsuite name="mfa_yubikey Unit Tests">
             <directory>./Tests/Unit/</directory>
         </testsuite>
     </testsuites>

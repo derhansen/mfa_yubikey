@@ -1,19 +1,19 @@
 <?php
 
-namespace Derhansen\SfYubikey\Tests\Unit;
+namespace Derhansen\MfaYubikey\Tests\Unit;
 
 /*
- * This file is part of the Extension "sf_yubikey" for TYPO3 CMS.
+ * This file is part of the Extension "mfa_yubikey" for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
 
-use Derhansen\SfYubikey\Service\YubikeyService;
+use Derhansen\MfaYubikey\Service\YubikeyService;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
 /**
- * Testcase for class Derhansen\SfYubikey\Service\YubikeyService
+ * Testcase for class Derhansen\MfaYubikey\Service\YubikeyService
  */
 class YubikeyServiceTest extends UnitTestCase
 {

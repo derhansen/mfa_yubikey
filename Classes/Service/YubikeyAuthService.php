@@ -3,13 +3,13 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the Extension "sf_yubikey" for TYPO3 CMS.
+ * This file is part of the Extension "mfa_yubikey" for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Derhansen\SfYubikey\Service;
+namespace Derhansen\MfaYubikey\Service;
 
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -28,7 +28,7 @@ class YubikeyAuthService
 
     public function __construct()
     {
-        $extConfig = GeneralUtility::makeInstance(ExtensionConfiguration::class)->get('sf_yubikey');
+        $extConfig = GeneralUtility::makeInstance(ExtensionConfiguration::class)->get('mfa_yubikey');
 
         $this->yubikeyClientId = trim($extConfig['yubikeyClientId']);
         $this->yubikeyClientKey = trim($extConfig['yubikeyClientKey']);

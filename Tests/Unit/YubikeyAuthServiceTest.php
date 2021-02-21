@@ -1,20 +1,20 @@
 <?php
 
-namespace Derhansen\SfYubikey\Tests\Unit;
+namespace Derhansen\MfaYubikey\Tests\Unit;
 
 /*
- * This file is part of the Extension "sf_yubikey" for TYPO3 CMS.
+ * This file is part of the Extension "mfa_yubikey" for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
 
-use Derhansen\SfYubikey\Service\YubikeyAuthService;
+use Derhansen\MfaYubikey\Service\YubikeyAuthService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
 /**
- * Testcase for class Derhansen\SfYubikey\Service\YubikeyAuthService
+ * Testcase for class Derhansen\MfaYubikey\Service\YubikeyAuthService
  */
 class YubikeyAuthServiceTest extends UnitTestCase
 {
@@ -53,7 +53,7 @@ class YubikeyAuthServiceTest extends UnitTestCase
     public function verifyHmacWorksAsExpected($response, $apiKey, $expected)
     {
         // Dummy extension settings
-        $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['sf_yubikey'] = [
+        $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['mfa_yubikey'] = [
             'yubikeyClientId' => 'test',
             'yubikeyClientKey' => 'test',
             'yubikeyApiUrls' => 'api1,api2',

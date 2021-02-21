@@ -1,7 +1,7 @@
 <?php
 $header = <<<'EOF'
 
-This file is part of the TYPO3 extension sf_yubikey.
+This file is part of the TYPO3 extension mfa_yubikey.
 
 (c) Torben Hansen <derhansen@gmail.com>
 

@@ -3,16 +3,16 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the Extension "sf_yubikey" for TYPO3 CMS.
+ * This file is part of the Extension "mfa_yubikey" for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Derhansen\SfYubikey\Authentication\Mfa\Provider\Yubikey;
+namespace Derhansen\MfaYubikey\Authentication\Mfa\Provider\Yubikey;
 
-use Derhansen\SfYubikey\Service\YubikeyAuthService;
-use Derhansen\SfYubikey\Service\YubikeyService;
+use Derhansen\MfaYubikey\Service\YubikeyAuthService;
+use Derhansen\MfaYubikey\Service\YubikeyService;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -29,7 +29,7 @@ use TYPO3\CMS\Fluid\View\StandaloneView;
 
 class YubikeyProvider implements MfaProviderInterface
 {
-    private const LLL = 'LLL:EXT:sf_yubikey/Resources/Private/Language/locallang.xlf:';
+    private const LLL = 'LLL:EXT:mfa_yubikey/Resources/Private/Language/locallang.xlf:';
     private const MAX_ATTEMPTS = 3;
 
     private ResponseFactoryInterface $responseFactory;
@@ -135,8 +135,8 @@ class YubikeyProvider implements MfaProviderInterface
         string $type
     ): ResponseInterface {
         $view = GeneralUtility::makeInstance(StandaloneView::class);
-        $view->setTemplateRootPaths(['EXT:sf_yubikey/Resources/Private/Templates/']);
-        $view->setPartialRootPaths(['EXT:sf_yubikey/Resources/Private/Partials/']);
+        $view->setTemplateRootPaths(['EXT:mfa_yubikey/Resources/Private/Templates/']);
+        $view->setPartialRootPaths(['EXT:mfa_yubikey/Resources/Private/Partials/']);
         switch ($type) {
             case MfaViewType::SETUP:
                 $this->prepareSetupView($view, $propertyManager);

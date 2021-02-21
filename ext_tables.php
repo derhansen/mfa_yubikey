@@ -9,6 +9,6 @@ call_user_func(function () {
     $iconRegistry->registerIcon(
         'ext-sfyubikey-icon',
         \TYPO3\CMS\Core\Imaging\IconProvider\BitmapIconProvider::class,
-        ['source' => 'EXT:sf_yubikey/Resources/Public/Icons/yubico.svg']
+        ['source' => 'EXT:mfa_yubikey/Resources/Public/Icons/yubico.svg']
     );
 });
