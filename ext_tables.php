@@ -7,7 +7,7 @@ call_user_func(function () {
         \TYPO3\CMS\Core\Imaging\IconRegistry::class
     );
     $iconRegistry->registerIcon(
-        'ext-sfyubikey-icon',
+        'ext-mfayubikey-icon',
         \TYPO3\CMS\Core\Imaging\IconProvider\BitmapIconProvider::class,
         ['source' => 'EXT:mfa_yubikey/Resources/Public/Icons/yubico.svg']
     );

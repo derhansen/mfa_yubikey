@@ -20,4 +20,4 @@ services:
               title: 'LLL:EXT:mfa_yubikey/Resources/Private/Language/locallang.xlf:yubikey.title'
               description: 'LLL:EXT:mfa_yubikey/Resources/Private/Language/locallang.xlf:yubikey.description'
               setupInstructions: 'LLL:EXT:mfa_yubikey/Resources/Private/Language/locallang.xlf:yubikey.setupInstructions'
-              icon: 'ext-sfyubikey-icon'
+              icon: 'ext-mfayubikey-icon'
