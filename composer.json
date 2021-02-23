@@ -26,14 +26,14 @@
   "require": {
     "php": "^7.4",
     "ext-curl": "*",
-    "typo3/cms-core": "^11.2 || dev-master"
+    "typo3/cms-core": "~11.1.0 || dev-master"
   },
   "require-dev": {
-    "typo3/cms-backend": "^11.2 || dev-master",
-    "typo3/cms-frontend": "^11.2 || dev-master",
-    "typo3/cms-recordlist": "^11.2 || dev-master",
-    "typo3/cms-extbase": "^11.2 || dev-master",
-    "typo3/cms-fluid": "^11.2 || dev-master",
+    "typo3/cms-backend": "~11.1.0 || dev-master",
+    "typo3/cms-frontend": "~11.1.0 || dev-master",
+    "typo3/cms-recordlist": "~11.1.0 || dev-master",
+    "typo3/cms-extbase": "~11.1.0 || dev-master",
+    "typo3/cms-fluid": "~11.1.0 || dev-master",
     "typo3/testing-framework": "^6.6.2",
     "overtrue/phplint": "^1.1",
     "friendsofphp/php-cs-fixer": "^2.16.1"

@@ -11,7 +11,7 @@ YubiKey two-factor MFA authentication for TYPO3
 
 ## What is it?
 
-A MFA provider for TYPO3 11.2+ which implements YubiKey OTP authentication
+A MFA provider for TYPO3 11.1+ which implements YubiKey OTP authentication
 
 ## Documentation
 
