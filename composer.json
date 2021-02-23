@@ -49,7 +49,7 @@
     }
   },
   "replace": {
-    "typo3-ter/sf-yubikey": "self.version"
+    "typo3-ter/mfa-yubikey": "self.version"
   },
   "config": {
     "vendor-dir": ".Build/vendor",
