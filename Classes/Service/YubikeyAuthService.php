@@ -11,6 +11,10 @@ declare(strict_types=1);
 
 namespace Derhansen\MfaYubikey\Service;
 
+use Psr\Http\Client\ClientExceptionInterface;
+use Psr\Http\Client\ClientInterface;
+use Psr\Http\Client\NetworkExceptionInterface;
+use Psr\Http\Message\RequestFactoryInterface;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
@@ -19,21 +23,25 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class YubikeyAuthService
 {
+    protected ClientInterface $httpClient;
+    protected RequestFactoryInterface $requestFactory;
     protected array $errors = [];
     protected string $yubikeyClientId = '';
     protected string $yubikeyClientKey = '';
     protected array $yubikeyApiUrl = [];
-    protected bool $disableSslVerification = false;
     protected bool $initialized = false;
 
-    public function __construct()
-    {
+    public function __construct(
+        ClientInterface $httpClient,
+        RequestFactoryInterface $requestFactory
+    ) {
+        $this->httpClient = $httpClient;
+        $this->requestFactory = $requestFactory;
         $extConfig = GeneralUtility::makeInstance(ExtensionConfiguration::class)->get('mfa_yubikey');
 
         $this->yubikeyClientId = trim($extConfig['yubikeyClientId']);
         $this->yubikeyClientKey = trim($extConfig['yubikeyClientKey']);
         $this->yubikeyApiUrl = GeneralUtility::trimExplode(';', $extConfig['yubikeyApiUrls'], true);
-        $this->disableSslVerification = (bool)$extConfig['disableSslVerification'];
 
         $this->initialized = $this->yubikeyClientId !== '' && $this->yubikeyClientKey !== '' &&
             !empty($this->yubikeyApiUrl);
@@ -113,45 +121,33 @@ class YubikeyAuthService
         foreach ($this->yubikeyApiUrl as $apiUrl) {
             $urls[] = $apiUrl . '?' . $parameters;
         }
-        $curlOptions = [
-            CURLOPT_USERAGENT => 'Enhanced TYPO3 Yubikey OTP Login Service',
-            CURLOPT_RETURNTRANSFER => true
-        ];
-        if ($GLOBALS['TYPO3_CONF_VARS']['SYS']['curlProxyServer']) {
-            $curlOptions[CURLOPT_PROXY] = $GLOBALS['TYPO3_CONF_VARS']['SYS']['curlProxyServer'];
-        }
-        if ($this->disableSslVerification) {
-            $curlOptions[CURLOPT_SSL_VERIFYPEER] = false;
-            $curlOptions[CURLOPT_SSL_VERIFYHOST] = false;
-        }
 
-        $mh = curl_multi_init();
-        $connections = [];
-        foreach ($urls as $i => $url) {
-            $connections[$i] = curl_init($url);
-            $curlOptions[CURLOPT_URL] = $url;
-            curl_setopt_array($connections[$i], $curlOptions);
-            curl_multi_add_handle($mh, $connections[$i]);
-        }
-
-        do {
-            $status = curl_multi_exec($mh, $active);
-        } while ($status === CURLM_CALL_MULTI_PERFORM || $active);
-
-        foreach ($urls as $i => $url) {
-            $response = curl_multi_getcontent($connections[$i]);
-            if ($this->verifyHmac($response, $this->yubikeyClientKey)) {
-                if (!preg_match('/status=([a-zA-Z0-9_]+)/', $response, $result)) {
-                    return false;
+        foreach ($urls as $url) {
+            $request = $this->requestFactory->createRequest('GET', $url);
+            try {
+                $response = $this->httpClient->sendRequest($request);
+                if ($response->getStatusCode() !== 200) {
+                    $this->addError('HTTP_STATUS_CODE_' . $response->getStatusCode());
+                    continue;
                 }
-                if ($result[1] === 'OK') {
-                    curl_multi_close($mh);
-                    return true;
+                $data = (string)$response->getBody();
+                if ($this->verifyHmac($data, $this->yubikeyClientKey)) {
+                    if (!preg_match('/status=([a-zA-Z0-9_]+)/', $data, $result)) {
+                        return false;
+                    }
+                    if ($result[1] === 'OK') {
+                        return true;
+                    }
+                    $this->addError($result[1]);
                 }
-                $this->addError($result[1]);
+            } catch (NetworkExceptionInterface $e) {
+                $this->addError('NETWORK_EXCEPTION');
+                continue;
+            } catch (ClientExceptionInterface $e) {
+                $this->addError('CLIENT_EXCEPTION');
+                continue;
             }
         }
-        curl_multi_close($mh);
 
         return false;
     }
