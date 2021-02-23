@@ -17,13 +17,19 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Class CheckYubiKeyOtpCommand
  */
 class CheckYubiKeyOtpCommand extends Command
 {
+    private YubikeyAuthService $yubikeyAuthService;
+
+    public function __construct(YubikeyAuthService $yubikeyAuthService) {
+        $this->yubikeyAuthService = $yubikeyAuthService;
+        parent::__construct();
+    }
+
     public function configure()
     {
         $this
@@ -45,14 +51,13 @@ class CheckYubiKeyOtpCommand extends Command
         $io = new SymfonyStyle($input, $output);
         $io->title($this->getDescription());
 
-        $yubikeyAuth = GeneralUtility::makeInstance(YubikeyAuthService::class);
         $otp = $input->getArgument('otp');
 
-        if ($yubikeyAuth->verifyOtp($otp)) {
+        if ($this->yubikeyAuthService->verifyOtp($otp)) {
             $io->success('OK: ' . $otp . ' has been successfully validated.');
             return 0;
         }
-        $io->error($otp . '  could not be validated. Reasons: ' . implode(' / ', $yubikeyAuth->getErrors()));
+        $io->error($otp . '  could not be validated. Reasons: ' . implode(' / ', $this->yubikeyAuthService->getErrors()));
         return 1;
     }
 }

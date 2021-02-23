@@ -10,6 +10,8 @@ namespace Derhansen\MfaYubikey\Tests\Unit;
  */
 
 use Derhansen\MfaYubikey\Service\YubikeyAuthService;
+use TYPO3\CMS\Core\Http\Client\GuzzleClientFactory;
+use TYPO3\CMS\Core\Http\RequestFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
@@ -57,10 +59,13 @@ class YubikeyAuthServiceTest extends UnitTestCase
             'yubikeyClientId' => 'test',
             'yubikeyClientKey' => 'test',
             'yubikeyApiUrls' => 'api1,api2',
-            'disableSslVerification' => 0
         ];
 
-        $yubikeyAuthService = GeneralUtility::makeInstance(YubikeyAuthService::class);
+        $yubikeyAuthService = GeneralUtility::makeInstance(
+            YubikeyAuthService::class,
+            GuzzleClientFactory::getClient(),
+            new RequestFactory
+        );
         self::assertSame($expected, $yubikeyAuthService->verifyHmac($response, $apiKey));
     }
 }
