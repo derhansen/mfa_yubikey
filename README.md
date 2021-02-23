@@ -13,9 +13,13 @@ YubiKey two-factor MFA authentication for TYPO3
 
 A MFA provider for TYPO3 11.1+ which implements YubiKey OTP authentication
 
+## Screenshot
+
+![Edit YubiKey setup](/Documentation/Images/mfa_yubikey_edit.png)
+
 ## Documentation
 
-You can find a detailed documentation in the Documentation folder of the TYPO3 extension.
+Currently no documentation is available. This will change until TYPO3 11 LTS is released.
 
 ## Support and updates
 
