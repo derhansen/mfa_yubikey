@@ -253,8 +253,17 @@ class YubikeyProvider implements MfaProviderInterface
 
         if ($isNewYubikeyRequest && !$existingYubikey) {
             // Add new YubiKey
-            $yubikeys[] = $this->getNewYubikey($request);
-            return $propertyManager->updateProperties(['yubikeys' => $yubikeys]);
+            $newYubiKey = $this->getNewYubikey($request);
+            if (!empty($newYubiKey)) {
+                $yubikeys[] = $newYubiKey;
+                return $propertyManager->updateProperties(['yubikeys' => $yubikeys]);
+            } else {
+                $this->addFlashMessage(
+                    $this->getLanguageService()->sL(self::LLL . 'newYubikeyFailed.message'),
+                    $this->getLanguageService()->sL(self::LLL . 'newYubikeyFailed.title'),
+                    FlashMessage::ERROR
+                );
+            }
         }
 
         if ($isNewYubikeyRequest && $existingYubikey) {
