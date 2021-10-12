@@ -28,17 +28,17 @@
     "psr/http-client": "^1.0",
     "psr/http-factory": "^1.0",
     "psr/http-message": "^1.0",
-    "typo3/cms-core": "~11.1.0 || dev-master"
+    "typo3/cms-core": "^11.5"
   },
   "require-dev": {
-    "typo3/cms-backend": "~11.1.0 || dev-master",
-    "typo3/cms-frontend": "~11.1.0 || dev-master",
-    "typo3/cms-recordlist": "~11.1.0 || dev-master",
-    "typo3/cms-extbase": "~11.1.0 || dev-master",
-    "typo3/cms-fluid": "~11.1.0 || dev-master",
+    "typo3/cms-backend": "^11.5",
+    "typo3/cms-frontend": "^11.5",
+    "typo3/cms-recordlist": "^11.5",
+    "typo3/cms-extbase": "^11.5",
+    "typo3/cms-fluid": "^11.5",
     "typo3/testing-framework": "^6.6.2",
     "overtrue/phplint": "^1.1",
-    "friendsofphp/php-cs-fixer": "^2.16.1"
+    "friendsofphp/php-cs-fixer": "^3.0"
   },
   "autoload": {
     "psr-4": {
