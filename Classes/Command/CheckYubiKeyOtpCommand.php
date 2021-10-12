@@ -25,7 +25,8 @@ class CheckYubiKeyOtpCommand extends Command
 {
     private YubikeyAuthService $yubikeyAuthService;
 
-    public function __construct(YubikeyAuthService $yubikeyAuthService) {
+    public function __construct(YubikeyAuthService $yubikeyAuthService)
+    {
         $this->yubikeyAuthService = $yubikeyAuthService;
         parent::__construct();
     }

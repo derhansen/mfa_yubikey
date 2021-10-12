@@ -34,16 +34,16 @@ class YubikeyServiceTest extends UnitTestCase
         return [
             'empty string' => [
                 '',
-                false
+                false,
             ],
             'invalid chars' => [
                 'cbdefghijxs',
-                false
+                false,
             ],
             'valid chars' => [
                 'cbdefghijklnrtuv',
-                true
-            ]
+                true,
+            ],
         ];
     }
 
@@ -64,15 +64,15 @@ class YubikeyServiceTest extends UnitTestCase
         return [
             'empty string' => [
                 '',
-                ''
+                '',
             ],
             'invalid string' => [
                 'cmchbtghtujvblturncgdcfdcjcigrvfhthknicibffh',
-                ''
+                '',
             ],
             'valid string' => [
                 'ccchbtghtujvblturncgdcfdcjcigrvfhthknicibffh',
-                'ccchbtghtujv'
+                'ccchbtghtujv',
             ],
         ];
     }
@@ -94,23 +94,23 @@ class YubikeyServiceTest extends UnitTestCase
         return [
             'empty string' => [
                 '',
-                false
+                false,
             ],
             'invalid string' => [
                 'cmchbtghtujvblturncgdcfdcjcigrvfhthknicibffh',
-                false
+                false,
             ],
             'string is too short' => [
                 'ccchbtghtujvblturncgdcfdcjcigrvfhthknicibff',
-                false
+                false,
             ],
             'string is too long' => [
                 'ccchbtghtujvblturncgdcfdcjcigrvfhthknicibffff',
-                false
+                false,
             ],
             'valid string' => [
                 'ccchbtghtujvblturncgdcfdcjcigrvfhthknicibffh',
-                true
+                true,
             ],
         ];
     }
@@ -133,40 +133,40 @@ class YubikeyServiceTest extends UnitTestCase
             'no yubikeys' => [
                 [],
                 'ccchbtghtujvblturncgdcfdcjcigrvfhthknicibffh',
-                false
+                false,
             ],
             'no otp' => [
                 [
                     [
-                        'yubikeyId' => 'ccchbtghtujv'
-                    ]
+                        'yubikeyId' => 'ccchbtghtujv',
+                    ],
                 ],
                 '',
-                false
+                false,
             ],
             'not in yubikeys' => [
                 [
                     [
-                        'yubikeyId' => 'ccchbtghtujv'
+                        'yubikeyId' => 'ccchbtghtujv',
                     ],
                     [
-                        'yubikeyId' => 'cbchbtghtujv'
-                    ]
+                        'yubikeyId' => 'cbchbtghtujv',
+                    ],
                 ],
                 'chchbtghtujvblturncgdcfdcjcigrvfhthknicibffh',
-                false
+                false,
             ],
             'in yubikeys' => [
                 [
                     [
-                        'yubikeyId' => 'ccchbtghtujv'
+                        'yubikeyId' => 'ccchbtghtujv',
                     ],
                     [
-                        'yubikeyId' => 'cbchbtghtujv'
-                    ]
+                        'yubikeyId' => 'cbchbtghtujv',
+                    ],
                 ],
                 'cbchbtghtujvblturncgdcfdcjcigrvfhthknicibffh',
-                true
+                true,
             ],
         ];
     }
@@ -194,11 +194,11 @@ class YubikeyServiceTest extends UnitTestCase
         $yubikeys = [
             [
                 'yubikeyId' => 'cbchbtghtujv',
-                'lastUsed' => ''
+                'lastUsed' => '',
             ],
             [
                 'yubikeyId' => 'ccchbtghtujv',
-                'lastUsed' => ''
+                'lastUsed' => '',
             ],
         ];
 

@@ -183,7 +183,7 @@ class YubikeyProvider implements MfaProviderInterface
 
         $properties = [
             'yubikeys' => $yubikeys,
-            'active' => true
+            'active' => true,
         ];
 
         // Usually there should be no entry if the provider is not activated, but to prevent the
@@ -257,13 +257,12 @@ class YubikeyProvider implements MfaProviderInterface
             if (!empty($newYubiKey)) {
                 $yubikeys[] = $newYubiKey;
                 return $propertyManager->updateProperties(['yubikeys' => $yubikeys]);
-            } else {
-                $this->addFlashMessage(
-                    $this->getLanguageService()->sL(self::LLL . 'newYubikeyFailed.message'),
-                    $this->getLanguageService()->sL(self::LLL . 'newYubikeyFailed.title'),
-                    FlashMessage::ERROR
-                );
             }
+            $this->addFlashMessage(
+                $this->getLanguageService()->sL(self::LLL . 'newYubikeyFailed.message'),
+                $this->getLanguageService()->sL(self::LLL . 'newYubikeyFailed.title'),
+                FlashMessage::ERROR
+            );
         }
 
         if ($isNewYubikeyRequest && $existingYubikey) {
@@ -286,7 +285,7 @@ class YubikeyProvider implements MfaProviderInterface
     {
         $view->setTemplate('Setup');
         $view->assignMultiple([
-            'initialized' => $this->isAuthServiceInitialized()
+            'initialized' => $this->isAuthServiceInitialized(),
         ]);
     }
 
@@ -299,7 +298,7 @@ class YubikeyProvider implements MfaProviderInterface
         $view->setTemplate('Edit');
         $view->assignMultiple([
             'yubikeys' => $propertyManager->getProperty('yubikeys'),
-            'initialized' => $this->isAuthServiceInitialized()
+            'initialized' => $this->isAuthServiceInitialized(),
         ]);
     }
 
@@ -344,7 +343,7 @@ class YubikeyProvider implements MfaProviderInterface
                 'name' => $name,
                 'yubikeyId' => $yubikeyId,
                 'dateAdded' => $this->context->getPropertyFromAspect('date', 'timestamp'),
-                'lastUsed' => ''
+                'lastUsed' => '',
             ];
         }
 
