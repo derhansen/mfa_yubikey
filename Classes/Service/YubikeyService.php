@@ -32,7 +32,7 @@ class YubikeyService
 
     public function isModhexString(string $modhex): bool
     {
-        return strlen($modhex) > 0 && preg_match('/^[cbdefghijklnrtuv]*$/', $modhex) === 1;
+        return strlen($modhex) > 0 && preg_match('/^[.bcdefghijklnprtuvxy]*$/', $modhex) === 1;
     }
 
     public function isInYubikeys(array $yubikeys, string $otp): bool
