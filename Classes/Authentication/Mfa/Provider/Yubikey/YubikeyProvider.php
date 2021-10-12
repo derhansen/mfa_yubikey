@@ -24,7 +24,6 @@ use TYPO3\CMS\Core\Localization\LanguageService;
 use TYPO3\CMS\Core\Messaging\FlashMessage;
 use TYPO3\CMS\Core\Messaging\FlashMessageService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Mvc\View\ViewInterface;
 use TYPO3\CMS\Fluid\View\StandaloneView;
 
 class YubikeyProvider implements MfaProviderInterface
@@ -278,10 +277,10 @@ class YubikeyProvider implements MfaProviderInterface
     }
 
     /**
-     * @param ViewInterface $view
+     * @param StandaloneView $view
      * @param MfaProviderPropertyManager $propertyManager
      */
-    protected function prepareSetupView(ViewInterface $view, MfaProviderPropertyManager $propertyManager): void
+    protected function prepareSetupView(StandaloneView $view, MfaProviderPropertyManager $propertyManager): void
     {
         $view->setTemplate('Setup');
         $view->assignMultiple([
@@ -290,10 +289,10 @@ class YubikeyProvider implements MfaProviderInterface
     }
 
     /**
-     * @param ViewInterface $view
+     * @param StandaloneView $view
      * @param MfaProviderPropertyManager $propertyManager
      */
-    protected function prepareEditView(ViewInterface $view, MfaProviderPropertyManager $propertyManager): void
+    protected function prepareEditView(StandaloneView $view, MfaProviderPropertyManager $propertyManager): void
     {
         $view->setTemplate('Edit');
         $view->assignMultiple([
@@ -303,10 +302,10 @@ class YubikeyProvider implements MfaProviderInterface
     }
 
     /**
-     * @param ViewInterface $view
+     * @param StandaloneView $view
      * @param MfaProviderPropertyManager $propertyManager
      */
-    protected function prepareAuthView(ViewInterface $view, MfaProviderPropertyManager $propertyManager): void
+    protected function prepareAuthView(StandaloneView $view, MfaProviderPropertyManager $propertyManager): void
     {
         $view->setTemplate('Auth');
         $view->assign('isLocked', $this->isLocked($propertyManager));
