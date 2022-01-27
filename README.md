@@ -14,12 +14,13 @@ A MFA provider for TYPO3 11.5 which implements YubiKey OTP authentication
 
 ## Documentation
 
-Configuration steps
+Configuration steps:
 
+1. Obtain Yubico Client ID and Secret Key at https://upgrade.yubico.com/getapikey/
 1. Enter you Yubico Client ID and Yubico Client Key in the extension settings
 2. Switch to backend user settings and choose "Manage multi-factor authentication" in "Account security" tab
-3. Setup the "YubiKey OTP MFA authentication" MFA provider by adding at lease one YubiKey
-4. Ensure to set the "YubiKey OTP MFA authentication" as default MFA provider
+3. Setup the "YubiKey OTP MFA authentication" MFA provider by adding at least one YubiKey
+4. (Optional) Ensure to set the "YubiKey OTP MFA authentication" as default MFA provider
 
 ## Support and updates
 
