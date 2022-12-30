@@ -55,18 +55,16 @@
   },
   "config": {
     "vendor-dir": ".Build/vendor",
-    "bin-dir": ".Build/bin"
+    "bin-dir": ".Build/bin",
+    "allow-plugins": {
+      "typo3/class-alias-loader": true,
+      "typo3/cms-composer-installers": true
+    }
   },
   "scripts": {
     "post-autoload-dump": [
       "mkdir -p .Build/Web/typo3conf/ext/",
       "[ -L .Build/Web/typo3conf/ext/mfa_yubikey ] || ln -snvf ../../../../. .Build/Web/typo3conf/ext/mfa_yubikey"
-    ],
-    "test:php:lint": [
-      "phplint"
-    ],
-    "test:php:unit": [
-      "phpunit"
     ]
   },
   "extra": {
