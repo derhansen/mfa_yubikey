@@ -6,7 +6,7 @@ YubiKey two-factor MFA authentication for TYPO3
 
 ## What is it?
 
-A MFA provider for TYPO3 11.5 which implements YubiKey OTP authentication
+A MFA provider for TYPO3 CMS which implements YubiKey OTP authentication
 
 ## Screenshot
 
@@ -17,11 +17,18 @@ A MFA provider for TYPO3 11.5 which implements YubiKey OTP authentication
 Configuration steps:
 
 1. Obtain Yubico Client ID and Secret Key at https://upgrade.yubico.com/getapikey/
-1. Enter you Yubico Client ID and Yubico Client Key in the extension settings
-2. Switch to backend user settings and choose "Manage multi-factor authentication" in "Account security" tab
-3. Setup the "YubiKey OTP MFA authentication" MFA provider by adding at least one YubiKey
-4. (Optional) Ensure to set the "YubiKey OTP MFA authentication" as default MFA provider
+2. Enter you Yubico Client ID and Yubico Client Key in the extension settings
+3. Switch to backend user settings and choose "Manage multi-factor authentication" in "Account security" tab
+4. Setup the "YubiKey OTP MFA authentication" MFA provider by adding at least one YubiKey
+5. (Optional) Ensure to set the "YubiKey OTP MFA authentication" as default MFA provider
+
+## Versions
+
+| Version | TYPO3     | PHP       | Support/Development                  |
+|---------|-----------|-----------|--------------------------------------|
+| 2.x     | 12.x      | 8.1 - 8.2 | Features, Bugfixes, Security Updates |
+| 1.x     | 11.5      | 7.4 - 8.1 | Features, Bugfixes, Security Updates |
 
 ## Support and updates
 
-The extension is hosted on GitHub. Please report feedback, bugs and changerequest directly at https://github.com/derhansen/mfa_yubikey
+The extension is hosted on GitHub. Please report feedback, bugs and change requests directly at https://github.com/derhansen/mfa_yubikey
