@@ -1,23 +1,24 @@
 services:
-    _defaults:
-        autowire: true
-        autoconfigure: true
-        public: false
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
 
-    Derhansen\MfaYubikey\:
-        resource: '../Classes/*'
+  Derhansen\MfaYubikey\:
+    resource: '../Classes/*'
 
-    Derhansen\MfaYubikey\Command\CheckYubiKeyOtpCommand:
-        tags:
-            - name: 'console.command'
-              command: 'mfa_yubikey:checkyubikeyotp'
-              schedulable: true
+  Derhansen\MfaYubikey\Command\CheckYubiKeyOtpCommand:
+    tags:
+      - name: 'console.command'
+        command: 'mfa_yubikey:checkyubikeyotp'
+        description: 'Checks the given OTP against the configured YubiKey endpoints'
+        schedulable: false
 
-    Derhansen\MfaYubikey\Authentication\Mfa\Provider\Yubikey\YubikeyProvider:
-        tags:
-            - name: mfa.provider
-              identifier: 'yubikey'
-              title: 'LLL:EXT:mfa_yubikey/Resources/Private/Language/locallang.xlf:yubikey.title'
-              description: 'LLL:EXT:mfa_yubikey/Resources/Private/Language/locallang.xlf:yubikey.description'
-              setupInstructions: 'LLL:EXT:mfa_yubikey/Resources/Private/Language/locallang.xlf:yubikey.setupInstructions'
-              icon: 'ext-mfayubikey-icon'
+  Derhansen\MfaYubikey\Authentication\Mfa\Provider\Yubikey\YubikeyProvider:
+    tags:
+      - name: mfa.provider
+        identifier: 'yubikey'
+        title: 'LLL:EXT:mfa_yubikey/Resources/Private/Language/locallang.xlf:yubikey.title'
+        description: 'LLL:EXT:mfa_yubikey/Resources/Private/Language/locallang.xlf:yubikey.description'
+        setupInstructions: 'LLL:EXT:mfa_yubikey/Resources/Private/Language/locallang.xlf:yubikey.setupInstructions'
+        icon: 'ext-mfayubikey-icon'

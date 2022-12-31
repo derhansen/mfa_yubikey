@@ -24,7 +24,7 @@ class YubikeyService
     public function getIdFromOtp(string $otp): string
     {
         $yubikeyId = substr($otp, 0, 12);
-        if (!$this->isOtp($otp) && strlen($yubikeyId) !== 12 || !$this->isModhexString($yubikeyId)) {
+        if ((!$this->isOtp($otp) && strlen($yubikeyId) !== 12) || !$this->isModhexString($yubikeyId)) {
             $yubikeyId = '';
         }
         return $yubikeyId;

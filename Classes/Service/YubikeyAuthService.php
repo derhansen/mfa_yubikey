@@ -16,6 +16,7 @@ use Psr\Http\Client\ClientInterface;
 use Psr\Http\Client\NetworkExceptionInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
+use TYPO3\CMS\Core\Crypto\Random;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -39,8 +40,8 @@ class YubikeyAuthService
         $this->requestFactory = $requestFactory;
         $extConfig = GeneralUtility::makeInstance(ExtensionConfiguration::class)->get('mfa_yubikey');
 
-        $this->yubikeyClientId = trim($extConfig['yubikeyClientId']);
-        $this->yubikeyClientKey = trim($extConfig['yubikeyClientKey']);
+        $this->yubikeyClientId = trim($extConfig['yubikeyClientId'] ?? '');
+        $this->yubikeyClientKey = trim($extConfig['yubikeyClientKey'] ?? '');
         $this->yubikeyApiUrl = GeneralUtility::trimExplode(';', $extConfig['yubikeyApiUrls'], true);
 
         $this->initialized = $this->yubikeyClientId !== '' && $this->yubikeyClientKey !== '' &&
@@ -49,10 +50,6 @@ class YubikeyAuthService
 
     /**
      * Verify HMAC-SHA1 signature on result received from Yubico server
-     *
-     * @param string $response
-     * @param string $yubicoClientKey
-     * @return bool
      */
     public function verifyHmac(string $response, string $yubicoClientKey): bool
     {
@@ -92,15 +89,12 @@ class YubikeyAuthService
 
     /**
      * Call the Auth API at Yubico server
-     *
-     * @param string $otp
-     * @return bool
      */
     public function verifyOtp(string $otp): bool
     {
         $requestParams['id'] = $this->yubikeyClientId;
         $requestParams['otp'] = trim($otp);
-        $requestParams['nonce'] = md5(uniqid((string)rand()));
+        $requestParams['nonce'] = md5((new Random())->generateRandomHexString(32));
         ksort($requestParams);
         $parameters = '';
         foreach ($requestParams as $p => $v) {

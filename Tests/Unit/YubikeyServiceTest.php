@@ -12,9 +12,6 @@ namespace Derhansen\MfaYubikey\Tests\Unit;
 use Derhansen\MfaYubikey\Service\YubikeyService;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
-/**
- * Testcase for class Derhansen\MfaYubikey\Service\YubikeyService
- */
 class YubikeyServiceTest extends UnitTestCase
 {
     protected YubikeyService $subject;
@@ -50,10 +47,8 @@ class YubikeyServiceTest extends UnitTestCase
     /**
      * @test
      * @dataProvider isValidModhexStringDataProvider
-     * @param $testString
-     * @param $expected
      */
-    public function isValidModhexStringReturnsExpectedResults($testString, $expected)
+    public function isValidModhexStringReturnsExpectedResults(string $testString, bool $expected): void
     {
         $result = $this->subject->isModhexString($testString);
         self::assertSame($expected, $result);
@@ -80,10 +75,8 @@ class YubikeyServiceTest extends UnitTestCase
     /**
      * @test
      * @dataProvider getYubikeyIdFromOtpDataProvider
-     * @param $otp
-     * @param $expected
      */
-    public function getYubikeyIdFromOtpReturnsExpectedResults($otp, $expected)
+    public function getYubikeyIdFromOtpReturnsExpectedResults(string $otp, string $expected): void
     {
         $result = $this->subject->getIdFromOtp($otp);
         self::assertSame($expected, $result);
@@ -118,10 +111,8 @@ class YubikeyServiceTest extends UnitTestCase
     /**
      * @test
      * @dataProvider isYubikeyOtpDataProvider
-     * @param $otp
-     * @param $expected
      */
-    public function isYubikeyOtpReturnsExpectedResults($otp, $expected)
+    public function isYubikeyOtpReturnsExpectedResults(string $otp, bool $expected): void
     {
         $result = $this->subject->isOtp($otp);
         self::assertSame($expected, $result);
@@ -174,12 +165,8 @@ class YubikeyServiceTest extends UnitTestCase
     /**
      * @test
      * @dataProvider isInYubikeysDataProvider
-     *
-     * @param $yubikeys
-     * @param $otp
-     * @param $expected
      */
-    public function isInYubikeysReturnsExpectedResult($yubikeys, $otp, $expected)
+    public function isInYubikeysReturnsExpectedResult(array $yubikeys, string $otp, bool $expected): void
     {
         $result = $this->subject->isInYubikeys($yubikeys, $otp);
         self::assertSame($expected, $result);
@@ -188,7 +175,7 @@ class YubikeyServiceTest extends UnitTestCase
     /**
      * @test
      */
-    public function updateYubikeyUsageUpdatesLastUsedValue()
+    public function updateYubikeyUsageUpdatesLastUsedValue(): void
     {
         $timestamp = 1613302334845;
         $yubikeys = [
@@ -214,7 +201,7 @@ class YubikeyServiceTest extends UnitTestCase
     /**
      * @test
      */
-    public function deleteFromYubikeysDeletesYubikey()
+    public function deleteFromYubikeysDeletesYubikey(): void
     {
         $yubikeys = [
             [

@@ -10,9 +10,10 @@ jobs:
     strategy:
       matrix:
         env:
-          - { php: 7.4, typo3: ^11.5 }
-          - { php: 8.0, typo3: ^11.5 }
-          - { php: 8.1, typo3: ^11.5 }
+          - { php: 8.1, typo3: ^12.1 }
+          - { php: 8.2, typo3: ^12.1 }
+          - { php: 8.1, typo3: dev-main }
+          - { php: 8.2, typo3: dev-main }
 
     env: ${{ matrix.env }}
 
@@ -31,9 +32,6 @@ jobs:
       - name: Install dependencies
         run: |
           composer require typo3/cms-core:${{ matrix.env.typo3 }} --no-progress
-
-      - name: Lint PHP
-        run: .Build/bin/phplint
 
       - name: Unit Tests
         run: .Build/bin/phpunit

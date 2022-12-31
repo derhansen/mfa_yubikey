@@ -1,7 +1,7 @@
 {
   "name": "derhansen/mfa_yubikey",
   "type": "typo3-cms-extension",
-  "description": "YubiKey OTP MFA provider for TYPO3 11.2+",
+  "description": "YubiKey OTP MFA provider for the TYPO3 backend login.",
   "homepage": "https://github.com/derhansen/mfa_yubikey",
   "support": {
     "issues": "https://github.com/derhansen/mfa_yubikey/issues"
@@ -24,21 +24,21 @@
     "GPL-2.0-or-later"
   ],
   "require": {
-    "php": "^7.4 || ^8.0",
+    "php": "^8.1",
     "psr/http-client": "^1.0",
     "psr/http-factory": "^1.0",
     "psr/http-message": "^1.0",
-    "typo3/cms-core": "^11.5"
+    "typo3/cms-core": "^12.1 || dev-main"
   },
   "require-dev": {
-    "typo3/cms-backend": "^11.5",
-    "typo3/cms-frontend": "^11.5",
-    "typo3/cms-recordlist": "^11.5",
-    "typo3/cms-extbase": "^11.5",
-    "typo3/cms-fluid": "^11.5",
-    "typo3/testing-framework": "^6.6.2",
-    "overtrue/phplint": "^1.1",
-    "friendsofphp/php-cs-fixer": "^3.0"
+    "typo3/cms-backend": "^12.1 || dev-main",
+    "typo3/cms-frontend": "^12.1 || dev-main",
+    "typo3/cms-recordlist": "^12.1 || dev-main",
+    "typo3/cms-extbase": "^12.1 || dev-main",
+    "typo3/cms-fluid": "^12.1 || dev-main",
+    "friendsofphp/php-cs-fixer": "^3.12.0",
+    "sbuerk/typo3-cmscomposerinstallers-testingframework-bridge": "^0.1.0",
+    "typo3/testing-framework": "~7.0@dev || dev-main"
   },
   "autoload": {
     "psr-4": {
@@ -58,14 +58,9 @@
     "bin-dir": ".Build/bin",
     "allow-plugins": {
       "typo3/class-alias-loader": true,
-      "typo3/cms-composer-installers": true
+      "typo3/cms-composer-installers": true,
+      "sbuerk/typo3-cmscomposerinstallers-testingframework-bridge": true
     }
-  },
-  "scripts": {
-    "post-autoload-dump": [
-      "mkdir -p .Build/Web/typo3conf/ext/",
-      "[ -L .Build/Web/typo3conf/ext/mfa_yubikey ] || ln -snvf ../../../../. .Build/Web/typo3conf/ext/mfa_yubikey"
-    ]
   },
   "extra": {
     "typo3/cms": {

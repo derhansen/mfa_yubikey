@@ -31,23 +31,16 @@ class CheckYubiKeyOtpCommand extends Command
         parent::__construct();
     }
 
-    public function configure()
+    public function configure(): void
     {
-        $this
-            ->setDescription('Checks the given OTP against the configured YubiKey endpoints')
-            ->addArgument(
-                'otp',
-                InputArgument::REQUIRED,
-                'The YubiKey OTP'
-            );
+        $this->addArgument(
+            'otp',
+            InputArgument::REQUIRED,
+            'The YubiKey OTP'
+        );
     }
 
-    /**
-     * @param InputInterface $input
-     * @param OutputInterface $output
-     * @return int|void|null
-     */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);
         $io->title($this->getDescription());
@@ -56,9 +49,10 @@ class CheckYubiKeyOtpCommand extends Command
 
         if ($this->yubikeyAuthService->verifyOtp($otp)) {
             $io->success('OK: ' . $otp . ' has been successfully validated.');
-            return 0;
+            return self::SUCCESS;
         }
         $io->error($otp . '  could not be validated. Reasons: ' . implode(' / ', $this->yubikeyAuthService->getErrors()));
-        return 1;
+
+        return self::FAILURE;
     }
 }

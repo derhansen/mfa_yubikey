@@ -15,12 +15,9 @@ use TYPO3\CMS\Core\Http\RequestFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
-/**
- * Testcase for class Derhansen\MfaYubikey\Service\YubikeyAuthService
- */
 class YubikeyAuthServiceTest extends UnitTestCase
 {
-    public function verifyHmacDataProvider()
+    public function verifyHmacDataProvider(): array
     {
         $h = 'lHVE5KrfuhWg36MttJOwxWqa/AY=';
         $t = '2021-02-13T05:20:11Z0768';
@@ -52,7 +49,7 @@ class YubikeyAuthServiceTest extends UnitTestCase
      * @test
      * @dataProvider verifyHmacDataProvider
      */
-    public function verifyHmacWorksAsExpected($response, $apiKey, $expected)
+    public function verifyHmacWorksAsExpected(string $response, string $apiKey, bool $expected): void
     {
         // Dummy extension settings
         $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['mfa_yubikey'] = [
@@ -63,8 +60,8 @@ class YubikeyAuthServiceTest extends UnitTestCase
 
         $yubikeyAuthService = GeneralUtility::makeInstance(
             YubikeyAuthService::class,
-            GuzzleClientFactory::getClient(),
-            new RequestFactory()
+            (new GuzzleClientFactory())->getClient(),
+            new RequestFactory(new GuzzleClientFactory())
         );
         self::assertSame($expected, $yubikeyAuthService->verifyHmac($response, $apiKey));
     }
