@@ -31,7 +31,8 @@
   "require-dev": {
     "friendsofphp/php-cs-fixer": "^3.12.0",
     "sbuerk/typo3-cmscomposerinstallers-testingframework-bridge": "^0.1.0",
-    "typo3/testing-framework": "~7.0@dev || dev-main"
+    "typo3/testing-framework": "~7.0@dev",
+    "phpunit/phpunit": "^9.5.25"
   },
   "autoload": {
     "psr-4": {
