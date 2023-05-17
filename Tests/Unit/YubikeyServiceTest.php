@@ -26,7 +26,7 @@ class YubikeyServiceTest extends UnitTestCase
         unset($this->subject);
     }
 
-    public function isValidModhexStringDataProvider(): array
+    public static function isValidModhexStringDataProvider(): array
     {
         return [
             'empty string' => [
@@ -54,7 +54,7 @@ class YubikeyServiceTest extends UnitTestCase
         self::assertSame($expected, $result);
     }
 
-    public function getYubikeyIdFromOtpDataProvider(): array
+    public static function getYubikeyIdFromOtpDataProvider(): array
     {
         return [
             'empty string' => [
@@ -82,7 +82,7 @@ class YubikeyServiceTest extends UnitTestCase
         self::assertSame($expected, $result);
     }
 
-    public function isYubikeyOtpDataProvider(): array
+    public static function isYubikeyOtpDataProvider(): array
     {
         return [
             'empty string' => [
@@ -118,7 +118,7 @@ class YubikeyServiceTest extends UnitTestCase
         self::assertSame($expected, $result);
     }
 
-    public function isInYubikeysDataProvider(): array
+    public static function isInYubikeysDataProvider(): array
     {
         return [
             'no yubikeys' => [
