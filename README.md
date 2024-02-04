@@ -1,7 +1,7 @@
 YubiKey two-factor MFA authentication for TYPO3
 ===============================================
 
-[![Build Status](https://github.com/derhansen/mfa_yubikey/workflows/CI/badge.svg?branch=master)](https://github.com/derhansen/mfa_yubikey/actions)
+[![CI](https://github.com/derhansen/mfa_yubikey/actions/workflows/ci.yml/badge.svg)](https://github.com/derhansen/mfa_yubikey/actions/workflows/ci.yml)
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 
 ## What is it?
