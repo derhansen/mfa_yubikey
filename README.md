@@ -26,8 +26,8 @@ Configuration steps:
 
 | Version | TYPO3     | PHP       | Support/Development                  |
 |---------|-----------|-----------|--------------------------------------|
-| 2.x     | 12.x      | 8.1 - 8.2 | Features, Bugfixes, Security Updates |
-| 1.x     | 11.5      | 7.4 - 8.1 | Features, Bugfixes, Security Updates |
+| 2.x     | 12.x      | 8.1 - 8.3 | Features, Bugfixes, Security Updates |
+| 1.x     | 11.5      | 7.4 - 8.3 | Features, Bugfixes, Security Updates |
 
 ## Support and updates
 
