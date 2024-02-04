@@ -1,0 +1,34 @@
+{
+  "name": "derhansen/mfa_yubikey_build",
+  "description": "composer.json for builds",
+  "repositories": [
+    {
+      "type": "path",
+      "url": "../"
+    }
+  ],
+  "require": {
+    "derhansen/mfa_yubikey": "@dev",
+    "typo3/cms-core": "^12.4",
+    "ext-curl": "*",
+    "ext-pdo": "*",
+    "php": ">=8.1"
+  },
+  "require-dev": {
+    "typo3/cms-backend": "^12.4",
+    "typo3/cms-frontend": "^12.4",
+    "typo3/cms-recordlist": "^12.4",
+    "typo3/cms-extbase": "^12.4",
+    "typo3/cms-fluid": "^12.4",
+    "typo3/cms-composer-installers": "^5.0",
+    "typo3/testing-framework": "^8.0.0",
+    "friendsofphp/php-cs-fixer": "^v3.46.0"
+  },
+  "config": {
+    "allow-plugins": {
+      "typo3/class-alias-loader": true,
+      "typo3/cms-composer-installers": true,
+      "phpstan/extension-installer": true
+    }
+  }
+}

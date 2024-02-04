@@ -23,14 +23,8 @@
   "license": [
     "GPL-2.0-or-later"
   ],
-  "minimum-stability": "dev",
-  "prefer-stable": true,
   "require": {
     "typo3/cms-core": "^12.4"
-  },
-  "require-dev": {
-    "friendsofphp/php-cs-fixer": "^3.12.0",
-    "typo3/testing-framework": "^8.0"
   },
   "autoload": {
     "psr-4": {
@@ -42,23 +36,9 @@
       "Derhansen\\MfaYubikey\\": "Tests"
     }
   },
-  "replace": {
-    "typo3-ter/mfa-yubikey": "self.version"
-  },
-  "config": {
-    "vendor-dir": ".Build/vendor",
-    "bin-dir": ".Build/bin",
-    "allow-plugins": {
-      "typo3/class-alias-loader": true,
-      "typo3/cms-composer-installers": true,
-      "sbuerk/typo3-cmscomposerinstallers-testingframework-bridge": true
-    }
-  },
   "extra": {
     "typo3/cms": {
-      "extension-key": "mfa_yubikey",
-      "cms-package-dir": "{$vendor-dir}/typo3/cms",
-      "web-dir": ".Build/Web"
+      "extension-key": "mfa_yubikey"
     }
   }
 }
