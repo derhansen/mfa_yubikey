@@ -24,7 +24,7 @@
     "GPL-2.0-or-later"
   ],
   "require": {
-    "typo3/cms-core": "^12.4"
+    "typo3/cms-core": "^13.2"
   },
   "autoload": {
     "psr-4": {

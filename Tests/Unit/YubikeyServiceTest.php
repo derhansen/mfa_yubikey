@@ -10,6 +10,8 @@ namespace Derhansen\MfaYubikey\Tests\Unit;
  */
 
 use Derhansen\MfaYubikey\Service\YubikeyService;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
 class YubikeyServiceTest extends UnitTestCase
@@ -44,10 +46,8 @@ class YubikeyServiceTest extends UnitTestCase
         ];
     }
 
-    /**
-     * @test
-     * @dataProvider isValidModhexStringDataProvider
-     */
+    #[Test]
+    #[DataProvider('isValidModhexStringDataProvider')]
     public function isValidModhexStringReturnsExpectedResults(string $testString, bool $expected): void
     {
         $result = $this->subject->isModhexString($testString);
@@ -72,10 +72,8 @@ class YubikeyServiceTest extends UnitTestCase
         ];
     }
 
-    /**
-     * @test
-     * @dataProvider getYubikeyIdFromOtpDataProvider
-     */
+    #[Test]
+    #[DataProvider('getYubikeyIdFromOtpDataProvider')]
     public function getYubikeyIdFromOtpReturnsExpectedResults(string $otp, string $expected): void
     {
         $result = $this->subject->getIdFromOtp($otp);
@@ -108,10 +106,8 @@ class YubikeyServiceTest extends UnitTestCase
         ];
     }
 
-    /**
-     * @test
-     * @dataProvider isYubikeyOtpDataProvider
-     */
+    #[Test]
+    #[DataProvider('isYubikeyOtpDataProvider')]
     public function isYubikeyOtpReturnsExpectedResults(string $otp, bool $expected): void
     {
         $result = $this->subject->isOtp($otp);
@@ -162,19 +158,15 @@ class YubikeyServiceTest extends UnitTestCase
         ];
     }
 
-    /**
-     * @test
-     * @dataProvider isInYubikeysDataProvider
-     */
+    #[Test]
+    #[DataProvider('isInYubikeysDataProvider')]
     public function isInYubikeysReturnsExpectedResult(array $yubikeys, string $otp, bool $expected): void
     {
         $result = $this->subject->isInYubikeys($yubikeys, $otp);
         self::assertSame($expected, $result);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function updateYubikeyUsageUpdatesLastUsedValue(): void
     {
         $timestamp = 1613302334845;
@@ -198,9 +190,7 @@ class YubikeyServiceTest extends UnitTestCase
         self::assertSame($result, $expected);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function deleteFromYubikeysDeletesYubikey(): void
     {
         $yubikeys = [

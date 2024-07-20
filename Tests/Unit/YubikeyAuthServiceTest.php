@@ -10,6 +10,8 @@ namespace Derhansen\MfaYubikey\Tests\Unit;
  */
 
 use Derhansen\MfaYubikey\Service\YubikeyAuthService;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\CMS\Core\Http\Client\GuzzleClientFactory;
 use TYPO3\CMS\Core\Http\RequestFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -45,10 +47,8 @@ class YubikeyAuthServiceTest extends UnitTestCase
         ];
     }
 
-    /**
-     * @test
-     * @dataProvider verifyHmacDataProvider
-     */
+    #[Test]
+    #[DataProvider('verifyHmacDataProvider')]
     public function verifyHmacWorksAsExpected(string $response, string $apiKey, bool $expected): void
     {
         // Dummy extension settings

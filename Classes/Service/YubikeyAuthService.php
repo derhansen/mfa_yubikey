@@ -24,8 +24,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class YubikeyAuthService
 {
-    protected ClientInterface $httpClient;
-    protected RequestFactoryInterface $requestFactory;
     protected array $errors = [];
     protected string $yubikeyClientId = '';
     protected string $yubikeyClientKey = '';
@@ -33,11 +31,9 @@ class YubikeyAuthService
     protected bool $initialized = false;
 
     public function __construct(
-        ClientInterface $httpClient,
-        RequestFactoryInterface $requestFactory
+        protected readonly ClientInterface $httpClient,
+        protected readonly RequestFactoryInterface $requestFactory
     ) {
-        $this->httpClient = $httpClient;
-        $this->requestFactory = $requestFactory;
         $extConfig = GeneralUtility::makeInstance(ExtensionConfiguration::class)->get('mfa_yubikey');
 
         $this->yubikeyClientId = trim($extConfig['yubikeyClientId'] ?? '');

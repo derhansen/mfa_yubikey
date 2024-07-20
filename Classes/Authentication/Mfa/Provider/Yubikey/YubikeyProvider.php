@@ -32,21 +32,12 @@ class YubikeyProvider implements MfaProviderInterface
     private const LLL = 'LLL:EXT:mfa_yubikey/Resources/Private/Language/locallang.xlf:';
     private const MAX_ATTEMPTS = 3;
 
-    private ResponseFactoryInterface $responseFactory;
-    private YubikeyAuthService $yubikeyAuthService;
-    private YubikeyService $yubikeyService;
-    private Context $context;
-
     public function __construct(
-        ResponseFactoryInterface $responseFactory,
-        Context $context,
-        YubikeyAuthService $yubikeyAuthService,
-        YubikeyService $yubikeyService
+        private readonly ResponseFactoryInterface $responseFactory,
+        private readonly Context $context,
+        private readonly YubikeyAuthService $yubikeyAuthService,
+        private readonly YubikeyService $yubikeyService
     ) {
-        $this->responseFactory = $responseFactory;
-        $this->context = $context;
-        $this->yubikeyAuthService = $yubikeyAuthService;
-        $this->yubikeyService = $yubikeyService;
     }
 
     /**
@@ -114,7 +105,7 @@ class YubikeyProvider implements MfaProviderInterface
     public function handleRequest(
         ServerRequestInterface $request,
         MfaProviderPropertyManager $propertyManager,
-        string $type
+        MfaViewType $type
     ): ResponseInterface {
         $view = GeneralUtility::makeInstance(StandaloneView::class);
         $view->setTemplateRootPaths(['EXT:mfa_yubikey/Resources/Private/Templates/']);
