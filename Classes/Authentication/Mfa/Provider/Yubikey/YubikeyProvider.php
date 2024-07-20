@@ -37,8 +37,7 @@ class YubikeyProvider implements MfaProviderInterface
         private readonly Context $context,
         private readonly YubikeyAuthService $yubikeyAuthService,
         private readonly YubikeyService $yubikeyService
-    ) {
-    }
+    ) {}
 
     /**
      * Checks if a YubiKey OTP is in the current request
