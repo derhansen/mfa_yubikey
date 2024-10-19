@@ -24,6 +24,7 @@
     "friendsofphp/php-cs-fixer": "^v3.46.0"
   },
   "config": {
+    "lock": false,
     "allow-plugins": {
       "typo3/class-alias-loader": true,
       "typo3/cms-composer-installers": true,
