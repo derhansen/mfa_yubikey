@@ -9,19 +9,19 @@
   ],
   "require": {
     "derhansen/mfa_yubikey": "@dev",
-    "typo3/cms-core": "^13.2 || dev-main",
+    "typo3/cms-core": "^13.4",
     "ext-curl": "*",
     "ext-pdo": "*",
     "php": ">=8.2"
   },
   "require-dev": {
-    "typo3/cms-backend": "^13.2 || dev-main",
-    "typo3/cms-frontend": "^13.2 || dev-main",
-    "typo3/cms-recordlist": "^13.2 || dev-main",
-    "typo3/cms-extbase": "^13.2 || dev-main",
-    "typo3/cms-fluid": "^13.2 || dev-main",
+    "typo3/cms-backend": "^13.4",
+    "typo3/cms-frontend": "^13.4",
+    "typo3/cms-recordlist": "^13.4",
+    "typo3/cms-extbase": "^13.4",
+    "typo3/cms-fluid": "^13.4",
     "typo3/cms-composer-installers": "^5.0",
-    "typo3/testing-framework": "^8.0.0",
+    "typo3/testing-framework": "^9.0.0",
     "friendsofphp/php-cs-fixer": "^v3.46.0"
   },
   "config": {
