@@ -25,7 +25,8 @@ use TYPO3\CMS\Core\Messaging\FlashMessage;
 use TYPO3\CMS\Core\Messaging\FlashMessageService;
 use TYPO3\CMS\Core\Type\ContextualFeedbackSeverity;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Fluid\View\StandaloneView;
+use TYPO3\CMS\Core\View\ViewFactoryData;
+use TYPO3\CMS\Core\View\ViewFactoryInterface;
 
 class YubikeyProvider implements MfaProviderInterface
 {
@@ -36,7 +37,8 @@ class YubikeyProvider implements MfaProviderInterface
         private readonly ResponseFactoryInterface $responseFactory,
         private readonly Context $context,
         private readonly YubikeyAuthService $yubikeyAuthService,
-        private readonly YubikeyService $yubikeyService
+        private readonly YubikeyService $yubikeyService,
+        private readonly ViewFactoryInterface $viewFactory
     ) {}
 
     /**
@@ -106,22 +108,39 @@ class YubikeyProvider implements MfaProviderInterface
         MfaProviderPropertyManager $propertyManager,
         MfaViewType $type
     ): ResponseInterface {
-        $view = GeneralUtility::makeInstance(StandaloneView::class);
-        $view->setTemplateRootPaths(['EXT:mfa_yubikey/Resources/Private/Templates/']);
-        $view->setPartialRootPaths(['EXT:mfa_yubikey/Resources/Private/Partials/']);
+        $viewFactoryData = new ViewFactoryData(
+            templateRootPaths: ['EXT:mfa_yubikey/Resources/Private/Templates/'],
+            partialRootPaths: ['EXT:mfa_yubikey/Resources/Private/Partials/'],
+            request: $request,
+        );
+        $view = $this->viewFactory->create($viewFactoryData);
+        $template = 'Auth';
+        $variables = [];
         switch ($type) {
             case MfaViewType::SETUP:
-                $this->prepareSetupView($view, $propertyManager);
+                $variables = [
+                    'provider' => $this,
+                    'initialized' => $this->isAuthServiceInitialized(),
+                ];
+                $template = 'Setup';
                 break;
             case MfaViewType::EDIT:
-                $this->prepareEditView($view, $propertyManager);
+                $variables = [
+                    'provider' => $this,
+                    'yubikeys' => $propertyManager->getProperty('yubikeys'),
+                    'initialized' => $this->isAuthServiceInitialized(),
+                ];
+                $template = 'Edit';
                 break;
             case MfaViewType::AUTH:
-                $this->prepareAuthView($view, $propertyManager);
+                $variables = [
+                    'provider' => $this,
+                    'isLocked' => $this->isLocked($propertyManager),
+                ];
                 break;
         }
         $response = $this->responseFactory->createResponse();
-        $response->getBody()->write($view->assign('provider', $this)->render());
+        $response->getBody()->write($view->assignMultiple($variables)->render($template));
         return $response;
     }
 
@@ -231,29 +250,6 @@ class YubikeyProvider implements MfaProviderInterface
 
         // Provider properties successfully updated
         return true;
-    }
-
-    protected function prepareSetupView(StandaloneView $view, MfaProviderPropertyManager $propertyManager): void
-    {
-        $view->setTemplate('Setup');
-        $view->assignMultiple([
-            'initialized' => $this->isAuthServiceInitialized(),
-        ]);
-    }
-
-    protected function prepareEditView(StandaloneView $view, MfaProviderPropertyManager $propertyManager): void
-    {
-        $view->setTemplate('Edit');
-        $view->assignMultiple([
-            'yubikeys' => $propertyManager->getProperty('yubikeys'),
-            'initialized' => $this->isAuthServiceInitialized(),
-        ]);
-    }
-
-    protected function prepareAuthView(StandaloneView $view, MfaProviderPropertyManager $propertyManager): void
-    {
-        $view->setTemplate('Auth');
-        $view->assign('isLocked', $this->isLocked($propertyManager));
     }
 
     /**
