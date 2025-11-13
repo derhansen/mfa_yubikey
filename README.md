@@ -30,6 +30,10 @@ Configuration steps:
 | 2.x     | 12.x  | 8.1 - 8.4 | Features, Bugfixes, Security Updates |
 | 1.x     | 11.5  | 7.4 - 8.4 | Security Updates                     |
 
+## Reporting a Vulnerability
+
+Please report vulnerabilities to [security@typo3.org](mailto:security@typo3.org).
+
 ## Support and updates
 
 The extension is hosted on GitHub. Please report feedback, bugs and change requests directly at https://github.com/derhansen/mfa_yubikey
