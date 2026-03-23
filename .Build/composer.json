@@ -9,16 +9,16 @@
   ],
   "require": {
     "derhansen/mfa_yubikey": "@dev",
-    "typo3/cms-core": "^14.1",
+    "typo3/cms-core": "~14.1.0 || dev-main",
     "ext-curl": "*",
     "ext-pdo": "*",
     "php": ">=8.2"
   },
   "require-dev": {
-    "typo3/cms-backend": "^14.1",
-    "typo3/cms-frontend": "^14.1",
-    "typo3/cms-extbase": "^14.1",
-    "typo3/cms-fluid": "^14.1",
+    "typo3/cms-backend": "~14.1.0 || dev-main",
+    "typo3/cms-frontend": "~14.1.0 || dev-main",
+    "typo3/cms-extbase": "~14.1.0 || dev-main",
+    "typo3/cms-fluid": "~14.1.0 || dev-main",
     "typo3/cms-composer-installers": "^5.0",
     "typo3/testing-framework": "^9.3.0",
     "friendsofphp/php-cs-fixer": "^v3.46.0"
