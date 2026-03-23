@@ -26,9 +26,10 @@ Configuration steps:
 
 | Version | TYPO3 | PHP       | Support/Development                  |
 |---------|-------|-----------|--------------------------------------|
-| 3.x     | 13.x  | 8.2 - 8.4 | Features, Bugfixes, Security Updates |
-| 2.x     | 12.x  | 8.1 - 8.4 | Features, Bugfixes, Security Updates |
-| 1.x     | 11.5  | 7.4 - 8.4 | Security Updates                     |
+| 4.x     | 14.x  | 8.2 - 8.5 | Features, Bugfixes, Security Updates |
+| 3.x     | 13.x  | 8.2 - 8.5 | Features, Bugfixes, Security Updates |
+| 2.x     | 12.x  | 8.1 - 8.4 | Security Updates                     |
+| 1.x     | 11.5  | 7.4 - 8.4 | Support dropped                      |
 
 ## Reporting a Vulnerability
 
