@@ -22,6 +22,18 @@ Configuration steps:
 4. Setup the "YubiKey OTP MFA authentication" MFA provider by adding at least one YubiKey
 5. (Optional) Ensure to set the "YubiKey OTP MFA authentication" as default MFA provider
 
+### Using a self-hosted YubiCloud instance
+
+Instead of using the official Yubico YubiCloud validation service, you can run
+your own OTP validation server. This is useful for organizations that require
+full control over their infrastructure or cannot use external services.
+
+To use a self-hosted validation server:
+
+1. Set up a self-hosted OTP validation server (see [Yubico's self-hosted OTP validation guide](https://developers.yubico.com/OTP/Guides/Self-hosted_OTP_validation.html))
+2. In the extension settings, set the "YubiCloud API URL" to the URL of your own validation server
+3. Enter the Client ID and Secret Key configured on your self-hosted instance
+
 ## Versions
 
 | Version | TYPO3 | PHP       | Support/Development                  |

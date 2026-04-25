@@ -1,44 +1,47 @@
 {
-  "name": "derhansen/mfa_yubikey",
-  "type": "typo3-cms-extension",
-  "description": "YubiKey OTP MFA provider for the TYPO3 backend login.",
-  "homepage": "https://github.com/derhansen/mfa_yubikey",
-  "support": {
-    "issues": "https://github.com/derhansen/mfa_yubikey/issues"
-  },
-  "authors": [
-    {
-      "name": "Torben Hansen",
-      "email": "torben@derhansen.com",
-      "homepage": "https://www.derhansen.com",
-      "role": "Developer"
-    }
-  ],
-  "keywords": [
-    "TYPO3 CMS",
-    "yubikey",
-    "MFA provider",
-    "two-factor authentication"
-  ],
-  "license": [
-    "GPL-2.0-or-later"
-  ],
-  "require": {
-    "typo3/cms-core": "~14.1.0 || dev-main"
-  },
-  "autoload": {
-    "psr-4": {
-      "Derhansen\\MfaYubikey\\": "Classes"
-    }
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "Derhansen\\MfaYubikey\\": "Tests"
-    }
-  },
-  "extra": {
-    "typo3/cms": {
-      "extension-key": "mfa_yubikey"
-    }
-  }
+	"name": "derhansen/mfa_yubikey",
+	"type": "typo3-cms-extension",
+	"description": "YubiKey OTP MFA provider - YubiKey OTP MFA provider for the TYPO3 backend login.",
+	"homepage": "https://github.com/derhansen/mfa_yubikey",
+	"support": {
+		"issues": "https://github.com/derhansen/mfa_yubikey/issues"
+	},
+	"authors": [
+		{
+			"name": "Torben Hansen",
+			"email": "torben@derhansen.com",
+			"homepage": "https://www.derhansen.com",
+			"role": "Developer"
+		}
+	],
+	"keywords": [
+		"TYPO3 CMS",
+		"yubikey",
+		"MFA provider",
+		"two-factor authentication"
+	],
+	"license": [
+		"GPL-2.0-or-later"
+	],
+	"require": {
+		"typo3/cms-core": "^14.3"
+	},
+	"autoload": {
+		"psr-4": {
+			"Derhansen\\MfaYubikey\\": "Classes"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"Derhansen\\MfaYubikey\\": "Tests"
+		}
+	},
+	"extra": {
+		"typo3/cms": {
+			"extension-key": "mfa_yubikey",
+			"Package": {
+				"providesPackages": []
+			}
+		}
+	}
 }
