@@ -39,6 +39,7 @@
 	"extra": {
 		"typo3/cms": {
 			"extension-key": "mfa_yubikey",
+			"version": "4.0.2",
 			"Package": {
 				"providesPackages": []
 			}
