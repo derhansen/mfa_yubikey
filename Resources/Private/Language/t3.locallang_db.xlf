@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2014-01-11T11:22:01Z" product-name="mfa_yubikey" target-language="t3">
+    <header/>
+    <body>
+      <trans-unit id="users.tx_sfyubikey_yubikey_enable">
+        <source>Enable YubiKey two-factor authentication</source>
+        <target>crwdns312828:0crwdne312828:0</target>
+      </trans-unit>
+      <trans-unit id="users.tx_sfyubikey_yubikey_id">
+        <source>YubiKey ID(s) - one per line. (Insert YubiKey and press the YubiKey button)</source>
+        <target>crwdns312830:0crwdne312830:0</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
